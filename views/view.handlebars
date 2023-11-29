@@ -16,9 +16,11 @@
         <td>{{expense}}</td>
         <td>{{category_type}}</td>
         <td>{{total}}</td>
-        <td><form action="/delete/{{id}}" method="post">
+        <td>
+            <form action="/delete/{{id}}" method="post">
             <button type="submit" class="delete">delete</button>
-        </form></td>
+            </form>
+        </td>
       </tr>
     {{/each}}
   </tbody>

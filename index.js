@@ -75,6 +75,7 @@ app.get("/allExpense", async (req, res) => {
 app.post("/delete/:id", async (req, res) => {
   let expenseId = req.params.id;
   console.log(expenseId);
+  
   await expenseFunction.deleteExpense(expenseId);
 
   res.redirect("/allExpense");

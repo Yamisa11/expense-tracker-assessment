@@ -30,7 +30,7 @@ export default function tracker(database) {
   }
 
   async function deleteExp(expenseId){
-    await database.none('DELETE FROM expense WHERE id = $1', [expenseId])
+    await database.none('DELETE FROM expense WHERE category_id = $1', [expenseId])
   }
 
   async function cateTotals(){
