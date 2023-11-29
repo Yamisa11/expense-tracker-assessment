@@ -1,47 +1,93 @@
 <h1>Expense Tracker App</h1>
 <h3>Add Expense</h3>
 <form action="add" method="post">
-    <label> Description: <input type="text" placeholder="e.g lunch" name="expense"> </label>
-<label> Amount: <input type="number" step="0.01" placeholder="e.g 32.50" name="amount"> </label>
-<div class="radioInput"> category
-        <label for="">
-          <input
-            type="radio"
-            name="category"
-            value=6
-          />daily</label>
-        <label for=""><input
-            type="radio"
-            name="category"
-            value=1
-          />weekly</label>
-        <label for=""><input
-            type="radio"
-            name="category"
-            value=3
-          />weekday</label>
-            <label for="">
-          <input
-            type="radio"
-            name="category"
-            value=5
-          />once-off</label>
-        <label for=""><input
-            type="radio"
-            name="category"
-            value=2
-          />monthly</label>
-        <label for=""><input
-            type="radio"
-            name="category"
-            value=4
-          />weekend</label>
-      </div>
+  <label>
+    Description:
+    <input type="text" placeholder="e.g lunch" name="expense" />
+  </label>
+  <label>
+    Amount:
+    <input type="number" step="0.01" placeholder="e.g 32.50" name="amount" />
+  </label>
+  <div class="radioInput">
+    category
+    <label for="">
+      <input type="radio" name="category" value="6" />daily</label>
+    <label for=""><input type="radio" name="category" value="1" />weekly</label>
+    <label for=""><input
+        type="radio"
+        name="category"
+        value="3"
+      />weekday</label>
+    <label for="">
+      <input type="radio" name="category" value="5" />once-off</label>
+    <label for=""><input
+        type="radio"
+        name="category"
+        value="2"
+      />monthly</label>
+    <label for=""><input
+        type="radio"
+        name="category"
+        value="4"
+      />weekend</label>
+  </div>
 
-      <button type="submit">Add expense</button>
+  <button type="submit">Add expense</button>
 </form>
 
 <h4>total Expense: <span></span> </h4>
 
 <h3>Expense summary per category</h3>
 
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>weekday</td>
+      <td>
+        {{#if categoryTotal.weekday.total}}
+          {{categoryTotal.weekday.total}}
+        {{/if}}
+      </td>
+
+    </tr>
+    <tr>
+      <td>weekend</td>
+      <td> {{#if categoryTotal.weekend.total}}
+          {{categoryTotal.weekend.total}}
+        {{/if}}</td>
+    </tr>
+    <tr>
+      <td>weekly</td>
+      <td> {{#if categoryTotal.weekly.total}}
+          {{categoryTotal.weekly.total}}
+        {{/if}}</td>
+    </tr>
+    <tr>
+      <td>once-off</td>
+      <td> {{#if categoryTotal.once-off.total}}
+          {{categoryTotal.once-off.total}}
+        {{/if}}</td>
+    </tr>
+    <tr>
+      <td>daily</td>
+      <td> {{#if categoryTotal.daily.total}}
+          {{categoryTotal.daily.total}}
+        {{/if}}</td>
+    </tr>
+    <tr>
+      <td>monthly</td>
+      <td> {{#if categoryTotal.monthly.total}}
+          {{categoryTotal.monthly.total}}
+        {{/if}}</td>
+    </tr>
+
+  </tbody>
+</table>

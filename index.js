@@ -29,8 +29,13 @@ app.use(
 app.use(flash());
 
 app.get("/", async (req, res) => {
-  
-    res.render("expense");
+  let allExpenses = await expenseFunction.allExpenses()
+  let result = await expenseFunction.groupData()
+  console.log(result);
+    res.render("expense",{
+        allExpenses: allExpenses,
+        categoryTotal: result
+    });
   });
 
 app.post("/add", async (req, res) => {
@@ -38,8 +43,8 @@ app.post("/add", async (req, res) => {
     let amount = req.body.amount;
     let categoryid = req.body.category;
 
-   
-   
+   await expenseFunction.addExpense(categoryid,amount,expense)
+   res.redirect("/")
   });
 
   let PORT = process.env.PORT || 9000;

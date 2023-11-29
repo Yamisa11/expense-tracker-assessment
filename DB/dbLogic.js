@@ -9,6 +9,16 @@ export default function tracker(database) {
     await database.any(query, [expense, amount, total,categoryId]);
   }
 
+  async function joinFunction() {
+    const expenseQuery = `
+                    SELECT * FROM expense  
+                    JOIN category ON category.id = expense.category_id
+                    
+                `;
+    const results = await database.any(expenseQuery);
+    return results;
+  }
+
   async function getAll(){
    const results = await database.any('SELECT * FROM expense')
    return results
@@ -33,7 +43,8 @@ export default function tracker(database) {
     getAll,
     expenseCategory,
     deleteExp,
-    cateTotals
+    cateTotals,
+    joinFunction
   };
 
 }
