@@ -27,24 +27,21 @@ export default function expense(database){
       return results
     }
 
-    async function expenseForCategory(categoryid){
+    // async function expenseForCategory(categoryid){
 
-    }
+    // }
 
-    async function deleteExpense(expenseid){
+    // async function deleteExpense(expenseid){
 
-    }
+    // }
 
-    async function categoryTotals(){
+    // async function categoryTotals(){
 
 
-    }
+    // }
 
     return{
         addExpense,
         allExpenses,
-        expenseForCategory,
-        deleteExpense,
-        categoryTotals
     }
 }
