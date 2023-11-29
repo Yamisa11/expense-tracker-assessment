@@ -35,7 +35,15 @@
 
   <button type="submit">Add expense</button>
 </form>
+{{#if message}}
+<span class="danger">{{message}}</span>
+{{/if}}
+ <script>
 
+            setTimeout(function () {
+            document.querySelector('.danger').style.display = 'none'; },
+            3500);
+          </script>
 <h3>Total Expense: <span>R{{grandTotal}}</span> </h3>  <a href="/allExpense">view all expense</a>
 
 <h3>Expense summary per category</h3>

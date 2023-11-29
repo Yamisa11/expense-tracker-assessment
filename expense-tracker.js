@@ -60,12 +60,16 @@ export default function expense(database){
         }
         return total
     }
+    async function reset(){
+        await database.reset()
+    }
 
     return{
         addExpense,
         allExpenses,
         expenseForCategory,
         deleteExpense,
-        categoryTotals
+        categoryTotals,
+        reset
     }
 }

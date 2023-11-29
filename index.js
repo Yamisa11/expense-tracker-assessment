@@ -31,13 +31,13 @@ app.use(flash());
 app.get("/", async (req, res) => {
   let allExpenses = await expenseFunction.allExpenses();
   let result = await expenseFunction.expenseForCategory();
-  let grandTotal = await expenseFunction.categoryTotals()
-  
-  
+  let grandTotal = await expenseFunction.categoryTotals();
+  let message= req.flash("message")
   res.render("expense", {
     allExpenses: allExpenses,
     categoryTotal: result,
-    grandTotal: grandTotal
+    grandTotal: grandTotal,
+    message:message
   });
 });
 
@@ -45,28 +45,30 @@ app.post("/add", async (req, res) => {
   let expense = req.body.expense;
   let amount = req.body.amount;
   let categoryid = req.body.category;
+  
 
-  await expenseFunction.addExpense(categoryid, amount, expense);
+  if (expense == undefined || amount == undefined || categoryid == undefined) {
+    req.flash("message", "make sure all values are entered and are correct");
+  } else {
+    await expenseFunction.addExpense(categoryid, amount, expense);
+  }
   res.redirect("/");
 });
 
 app.get("/allExpense", async (req, res) => {
- 
-  let joinFunc = await database.joinFunction()
- 
+  let joinFunc = await database.joinFunction();
 
   res.render("view", {
-    allExpenses: joinFunc
-
+    allExpenses: joinFunc,
   });
 });
 
 app.post("/delete/:id", async (req, res) => {
   let expenseId = req.params.id;
-console.log(expenseId);
-  await expenseFunction.deleteExpense(expenseId)
+  console.log(expenseId);
+  await expenseFunction.deleteExpense(expenseId);
 
-  res.redirect("/allExpense")
+  res.redirect("/allExpense");
 });
 
 let PORT = process.env.PORT || 9000;

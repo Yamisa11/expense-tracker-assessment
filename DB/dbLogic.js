@@ -38,6 +38,9 @@ export default function tracker(database) {
     return results
   }
 
+  async function reset(){
+    await database.none('DELETE FROM expense')
+  }
 
   return {
     insertExpense,
@@ -46,7 +49,7 @@ export default function tracker(database) {
     deleteExp,
     cateTotals,
     joinFunction,
-    
+    reset
   };
 
 }

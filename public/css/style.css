@@ -66,3 +66,7 @@ table {
     background-color: crimson;
     width: 100%;
   }
+  .danger{
+    background-color: crimson;
+    color: whitesmoke;
+  }
