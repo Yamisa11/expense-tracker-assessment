@@ -1,3 +1,12 @@
+/*import all the necessary modules. express,flash,bodyParse etc
+-import connection string, factory function and database logic function 
+-create a get route function that will get all the expenses in the table expense, get the expenses for a category and the total of all the total expenses
+-assign all expenses result to variable all expenses, category expenses to result and all the totals to grand tottal
+-render the variables the the expense handlebars
+-add post route that will get input of expanse,amount and category and add that expense to the table expense using the addExpense function
+-add allExpense route that will get the results from joining the two tables and render results to viw handlebars
+-add post route that will delete an expense using the id of the expense
+*/
 import express from "express";
 import { engine } from "express-handlebars";
 import bodyParser from "body-parser";
