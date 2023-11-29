@@ -26,7 +26,7 @@ export default function expense(database){
       let results=  await database.getAll()
       return results
     }
-    async function groupData() {
+    async function expenseForCategory() {
         let data = await database.joinFunction()
 
         return data.reduce((result, item) => {
@@ -45,22 +45,27 @@ export default function expense(database){
     
     
 
-    // async function expenseForCategory(categoryid){
+   
 
-    // }
+    async function deleteExpense(expenseid){
+        await database.deleteExp(expenseid)
+    }
 
-    // async function deleteExpense(expenseid){
-
-    // }
-
-    // async function categoryTotals(){
-
-
-    // }
+    async function categoryTotals(){
+        let total = 0
+        let results = await database.cateTotals()
+        for (let i = 0; i < results.length; i++) {
+            const element = results[i];
+            total = total + parseFloat(element.total)
+        }
+        return total
+    }
 
     return{
         addExpense,
         allExpenses,
-        groupData
+        expenseForCategory,
+        deleteExpense,
+        categoryTotals
     }
 }

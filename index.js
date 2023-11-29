@@ -29,25 +29,47 @@ app.use(
 app.use(flash());
 
 app.get("/", async (req, res) => {
-  let allExpenses = await expenseFunction.allExpenses()
-  let result = await expenseFunction.groupData()
-  console.log(result);
-    res.render("expense",{
-        allExpenses: allExpenses,
-        categoryTotal: result
-    });
+  let allExpenses = await expenseFunction.allExpenses();
+  let result = await expenseFunction.expenseForCategory();
+  let grandTotal = await expenseFunction.categoryTotals()
+  
+  
+  res.render("expense", {
+    allExpenses: allExpenses,
+    categoryTotal: result,
+    grandTotal: grandTotal
   });
+});
 
 app.post("/add", async (req, res) => {
-    let expense = req.body.expense;
-    let amount = req.body.amount;
-    let categoryid = req.body.category;
+  let expense = req.body.expense;
+  let amount = req.body.amount;
+  let categoryid = req.body.category;
 
-   await expenseFunction.addExpense(categoryid,amount,expense)
-   res.redirect("/")
-  });
+  await expenseFunction.addExpense(categoryid, amount, expense);
+  res.redirect("/");
+});
 
-  let PORT = process.env.PORT || 9000;
-  app.listen(PORT, () => {
-    console.log("App started...", PORT);
+app.get("/allExpense", async (req, res) => {
+ 
+  let joinFunc = await database.joinFunction()
+ 
+
+  res.render("view", {
+    allExpenses: joinFunc
+
   });
+});
+
+app.post("/delete/:id", async (req, res) => {
+  let expenseId = req.params.id;
+console.log(expenseId);
+  await expenseFunction.deleteExpense(expenseId)
+
+  res.redirect("/allExpense")
+});
+
+let PORT = process.env.PORT || 9000;
+app.listen(PORT, () => {
+  console.log("App started...", PORT);
+});

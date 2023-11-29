@@ -38,13 +38,15 @@ export default function tracker(database) {
     return results
   }
 
+
   return {
     insertExpense,
     getAll,
     expenseCategory,
     deleteExp,
     cateTotals,
-    joinFunction
+    joinFunction,
+    
   };
 
 }

@@ -3,11 +3,11 @@
 <form action="add" method="post">
   <label>
     Description:
-    <input type="text" placeholder="e.g lunch" name="expense" />
+    <input type="text" placeholder="e.g lunch" name="expense" class="input"/>
   </label>
   <label>
     Amount:
-    <input type="number" step="0.01" placeholder="e.g 32.50" name="amount" />
+    <input type="number" step="0.01" placeholder="e.g 32.50" name="amount" class="input"/>
   </label>
   <div class="radioInput">
     category
@@ -36,7 +36,7 @@
   <button type="submit">Add expense</button>
 </form>
 
-<h4>total Expense: <span></span> </h4>
+<h3>Total Expense: <span>R{{grandTotal}}</span> </h3>  <a href="/allExpense">view all expense</a>
 
 <h3>Expense summary per category</h3>
 
@@ -91,3 +91,4 @@
 
   </tbody>
 </table>
+
